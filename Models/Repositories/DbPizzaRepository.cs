@@ -19,6 +19,8 @@ namespace la_mia_pizzeria_static.Models.Repositories
             return db.Pizzas.Include(pizzas => pizzas.Category).Include(Pizzas => Pizzas.Tags).ToList();
         }
 
+
+        // Fa riferimento soltanto all'Api. 
         public List<Pizza> getAllPizza()
         {
             return db.Pizzas.ToList();
