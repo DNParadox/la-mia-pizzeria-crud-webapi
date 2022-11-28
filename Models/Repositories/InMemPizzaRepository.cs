@@ -10,8 +10,11 @@ namespace la_mia_pizzeria_static.Models.Repositories
         {
 
         }
-        
 
+        public List<Pizza> getAllPizza()
+        {
+            return Pizzas.ToList();
+        }
         public List<Pizza> All()
         {
 

@@ -3,6 +3,8 @@
     public interface IDbPizzaRepository
     {
         List<Pizza> All();
+
+        List<Pizza> getAllPizza();
         void Create(Pizza pizzas, List<int> SelectedTags);
         Pizza getById(int id);
 
