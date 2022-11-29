@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using Microsoft.Extensions.Hosting;
+using System.Runtime.Serialization;
 namespace la_mia_pizzeria_static.Models.Repositories
 {
     public class InMemPizzaRepository : IDbPizzaRepository
@@ -94,7 +95,11 @@ namespace la_mia_pizzeria_static.Models.Repositories
             pizzas.Tags = new List<Tag>();
 
             TagToPizza(pizzas, SelectedTags);
+        }
 
+        public List<Pizza> SearchByTitle(string? title)
+        {
+            throw new NotImplementedException();
         }
     }
 }

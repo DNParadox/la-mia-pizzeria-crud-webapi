@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - 1000 Gourmet</title>
+    <title>@ViewData["Title"] - 1000 Api</title>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/la_mia_pizzeria_static.styles.css" asp-append-version="true" />
@@ -26,14 +27,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Guest" asp-action="Index">la nostra Api</a>
                         </li>
-                       @* <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Razor" asp-action="Razor">Razor</a>
-                        </li>*@
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Pizza" asp-action="Create">Aggiungi una Pizza</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Index">Mostrami le Categorie disponibili</a>
+                      
                         </li>
                            
                     </ul>
@@ -55,6 +49,8 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
