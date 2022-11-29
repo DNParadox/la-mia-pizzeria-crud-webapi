@@ -11,5 +11,11 @@ namespace la_mia_pizzeria_static.Controllers
             ViewData["title"] = "Guest side";
             return View();
         }
+
+        public  IActionResult Details(int id)
+        {
+            ViewData["title"] = "Dettaglio Post";
+            return View(id);
+        }
     }
 }

@@ -23,10 +23,3 @@ body {
     height: 150px;
 }
 
-a{
-    color: white;
-    text-decoration: none;
-}
-a:is(:hover) {
-    color: white;
-}

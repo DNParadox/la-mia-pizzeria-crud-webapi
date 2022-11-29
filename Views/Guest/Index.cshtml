@@ -13,8 +13,7 @@
     </div>
 </div>
 <div class="row js_post_table d-none">
-
-  </div>
+</div>
 
 
 
@@ -23,8 +22,8 @@
 
 
 @section Scripts {
-<script type="text/javascript">
-  
+    <script type="text/javascript">
+
         document.querySelector(".js_search").addEventListener('keyup', OnUserInputEvent);
         var timeoutId = null;
         function OnUserInputEvent(e) {
@@ -32,7 +31,6 @@
             if (timeoutId != null) {
                 clearTimeout(timeoutId);
             }
-
             timeoutId = setTimeout(() => {
                 axios.get('/api/pizza/search', {
                     params: {
@@ -45,19 +43,12 @@
                 })
             }, 300);
         }
-
-
-
         axios.get('/api/pizza/get').then(res => {
             RenderPizzas(res.data);
         }).catch(error => {
             debugger;
             console.log(error);
         });
-
-
-
-
         function RenderPizzas(data) {
             if (data.length == 0) {
                 document.querySelector('.js_no_post').classList.remove('d-none');
@@ -71,19 +62,20 @@
                     console.log(pizza);
                     document.querySelector('.js_post_table').innerHTML +=
                         `
-                                                        <div class="col-12 col-md-4 p-2">
-                                        <div class="card post h-100">
-                                          <img src="${pizza.image}" class="card-img-top" alt="...">
-                                          <div class="card-body">
-                                            <h5 class="card-title">${pizza.title}</h5>
-                                            <p class="card-text">${pizza.description}</p>
-                                          </div>
-                                        </div>
-                                    </div>
-                            `;
+                                                <div class="col-12 col-md-4 p-2">
+                                           
+                                                <div class="card post h-100">
+                                                  <img src="${pizza.image}" class="card-img-top" alt="...">
+                                                  <div class="card-body">
+                                                                <a href="/Guest/Details/${pizza.id}"> <h5 class="card-title">${pizza.title}</h5> </a>
+                                                    <p class="card-text">${pizza.description}</p>
+                                                  </div>
+                                                </div>
+                                               
+                                            </div>
+                                    `;
                 });
             }
         }
-
-</script>
+    </script>
 }
