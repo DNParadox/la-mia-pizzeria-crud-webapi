@@ -1,0 +1,74 @@
+﻿@{
+    Layout = "_GuestLayout";
+}
+
+@model Message
+<div>
+    <div class="col-12 mt-5">
+
+        <form onsubmit="inviaMessaggio(event)"  asp-controller="Message" asp-action="Create" name="form">
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">Email</label>
+                <input asp-for="Email" type="email" class="form-control" id="contact-email" >
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label for="contact-name" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="contact-name">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label for="contact-title" class="form-label">Titolo</label>
+                <input type="text" class="form-control" id="contact-title">
+            </div>
+
+            <div class="mb-3">
+                <label for="contact-text" class="form-label">Testo</label>
+                <textarea class="form-control" id="contact-text" rows="10"></textarea>
+            </div>
+
+            <input type="submit" class="btn btn-primary" value="Invia" />
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script type="text/javascript">
+
+
+   
+
+        function inviaMessaggio(e) {
+
+            e.preventDefault();
+
+
+            axios.post('/api/message', {
+                email: document.querySelector('#contact-email').value,
+                name: document.querySelector('#contact-name').value,
+                title: document.querySelector('#contact-title').value,
+                text: document.querySelector('#contact-text').value,
+
+
+            }).then(res => {
+                swal({
+                    title: "Messaggio inviato!",
+                    text: "Il messaggio arriverà presto all'azienda",
+                    icon: "success",
+                    button: "Continua",
+                });
+                document.querySelector('#contact-title').value = '';
+                document.querySelector('#contact-text').value = '';
+           
+            
+            }).catch(error => {
+
+                console.log(error.response.data.errors);
+            })
+        }
+    </script>
+}
