@@ -6,28 +6,30 @@
 <div>
     <div class="col-12 mt-5">
 
-        <form onsubmit="inviaMessaggio(event)"  asp-controller="Message" asp-action="Create" name="form">
+        <form onsubmit="inviaMessaggio(event)" onclick="ValidateInput()"  asp-controller="Message" asp-action="Create" name="form">
 
             <div class="mb-3">
                 <label asp-for="Email" class="form-label">Email</label>
-                <input asp-for="Email" type="email" class="form-control" id="contact-email" >
-                <span asp-validation-for="Email" class="text-danger"></span>
+                <input asp-for="Email" type="email" class="form-control" id="contact-email" onclick="ValidateInput()" >
+                <span asp-validation-for="Email" class="text-danger text-check"></span>
             </div>
 
             <div class="mb-3">
                 <label for="contact-name" class="form-label">Nome</label>
-                <input type="text" class="form-control" id="contact-name">
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
+                <input type="text" class="form-control" id="contact-name" onclick="ValidateInput()">
+                <span asp-validation-for="Name" class="text-danger text-check"></span>
+            </div> 
 
             <div class="mb-3">
                 <label for="contact-title" class="form-label">Titolo</label>
-                <input type="text" class="form-control" id="contact-title">
+                <input type="text" class="form-control" id="contact-title" onclick="ValidateInput()">
+                <span asp-validation-for="Title" class="text-danger text text-check"></span>
             </div>
 
             <div class="mb-3">
                 <label for="contact-text" class="form-label">Testo</label>
-                <textarea class="form-control" id="contact-text" rows="10"></textarea>
+                <textarea class="form-control" id="contact-text" rows="10" onclick="ValidateInput()"></textarea>
+                <span asp-validation-for="Text" class="text-danger text-check"></span>
             </div>
 
             <input type="submit" class="btn btn-primary" value="Invia" />
@@ -39,8 +41,21 @@
 
     <script type="text/javascript">
 
-
+        function ValidateInput()
+        {
+            if (document.querySelector('.form-control').value == "")
+            {
+                document.querySelector('.text-check').innerHTML = `Bisogna completare il campo`;
+      
+            }
+            else if (document.querySelector('.form-control').value)
+            {
+                document.querySelector('.text-check').innerHTML = ` `;
+            }
+     
+        }
    
+       
 
         function inviaMessaggio(e) {
 

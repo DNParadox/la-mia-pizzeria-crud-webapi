@@ -3,6 +3,7 @@ using la_mia_pizzeria_static.Models;
 using la_mia_pizzeria_static.data;
 using Microsoft.AspNetCore.Mvc;
 using la_mia_pizzeria_static.Models.Repositories;
+using System.ComponentModel.DataAnnotations;
 
 namespace la_mia_pizzeria_static.Controllers.Api
 {
@@ -15,26 +16,22 @@ namespace la_mia_pizzeria_static.Controllers.Api
 
       
 
-        public MessageController()
-        {
-            db = new PizzeriaDbContext();
-        }
+        //public MessageController()
+        //{
+        //    db = new PizzeriaDbContext();
+        //}
 
         [HttpPost]
         public IActionResult Create([FromBody] Message message)
         {
+           
             try
             {
-                //if (message.Email != null)
-                //{
-                //    ModelState.AddModelError(nameof(message.Email), "Necessita un email");
-                //}
 
-                //if(!ModelState.IsValid)
-                //{
-                //    return UnprocessableEntity(ModelState);
-                //}
-                
+
+                ModelState.AddModelError("message.email", "Aggiungi un parametro");
+                BadRequest(ModelState);
+
                 db.Messages.Add(message);
                 db.SaveChanges();
 

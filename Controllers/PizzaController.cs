@@ -2,6 +2,7 @@
 using la_mia_pizzeria_static.data;
 using la_mia_pizzeria_static.Models.Pizzaform;
 using la_mia_pizzeria_static.Models.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
@@ -12,19 +13,21 @@ namespace la_mia_pizzeria_static.Controllers
 {
     public class PizzaController : Controller
     {
-        PizzeriaDbContext db;
+        private PizzeriaDbContext db;
 
         IDbPizzaRepository PizzaRepository;
-      
 
-        public PizzaController(IDbPizzaRepository _pizzaRepository) : base()
+       
+        public PizzaController(IDbPizzaRepository _pizzaRepository,PizzeriaDbContext _db) : base()
         {
-            // Usiamo Data quindi DB
-              db = new PizzeriaDbContext();
+            db = _db;
 
             PizzaRepository = _pizzaRepository;
         }
+
+
         //Read 
+        [Authorize]
         public IActionResult Index()
         {
             
@@ -35,7 +38,7 @@ namespace la_mia_pizzeria_static.Controllers
             return View(Pizzas);
 
         }
-
+        [Authorize]
         public IActionResult Detail(int id)
         {
 
@@ -44,7 +47,7 @@ namespace la_mia_pizzeria_static.Controllers
 
             return View(Pizzas);
         }
-
+        [Authorize]
         public IActionResult Create()
         {
             Pizzaform formData = new Pizzaform();
@@ -65,7 +68,7 @@ namespace la_mia_pizzeria_static.Controllers
 
             return View(formData);
         }
-
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]  // Equivalente di CSRF di Laravel
         // OLD public IActionResult Create(Pizza Pizza)
@@ -100,7 +103,7 @@ namespace la_mia_pizzeria_static.Controllers
 
 
 
-
+        [Authorize]
         public IActionResult Update(int id)
         {
             Pizza Pizzas = PizzaRepository.getById(id);
@@ -130,7 +133,7 @@ namespace la_mia_pizzeria_static.Controllers
             return View(formData);
         }
 
-
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Update(int id, Pizzaform formData)
@@ -169,7 +172,7 @@ namespace la_mia_pizzeria_static.Controllers
 
             return RedirectToAction("Index");
         }
-
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Delete(int id)

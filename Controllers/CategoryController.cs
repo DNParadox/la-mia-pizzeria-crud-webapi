@@ -2,6 +2,7 @@
 using la_mia_pizzeria_static.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using la_mia_pizzeria_static.Models.Repositories;
 
 namespace la_mia_pizzeria_static.Controllers
 {
@@ -9,12 +10,13 @@ namespace la_mia_pizzeria_static.Controllers
     {
         PizzeriaDbContext db;
 
-        public CategoryController() : base()
+        public CategoryController(IDbPizzaRepository _pizzaRepository, PizzeriaDbContext _db) : base()
         {
-            // Usiamo Data quindi DB
-            // Metodo mostrato da Paolo per dichiarare soltanto una volta il nostro DB anziché di volta in volta 
-            db = new PizzeriaDbContext();
+            
+            db = _db;
         }
+
+     
         public IActionResult Index()
         {
 
